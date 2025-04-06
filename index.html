@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tenun Insana</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Dancing+Script&display=swap" rel="stylesheet">
+
+  </head>
+  <body class="bg-secondary">
+    <div class="container p-0 border mb-4 mt-4 rounded-3 shadow bg-white">
+      <div class="banner-section">
+        <div class="banner-content">
+          <!-- Navbar -->
+          <nav class="navbar navbar-expand-lg p-3 position-relative">
+            <div class="container-fluid d-flex align-items-center">
+                <!-- Logo / Judul -->
+                <div class="logo"><a href="index.html">Tenun <span>Insana</span></a></div>
+        
+                <!-- Tombol Hamburger (Rata Tengah) -->
+                <button class="navbar-toggler position-absolute start-50 top-0 mt-2" type="button" 
+                    data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" 
+                    aria-controls="offcanvasCart" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+        
+                <!-- Menu Navigasi -->
+                <div class="collapse navbar-collapse text-center mt-3 mt-lg-0" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a href="#collection" class="nav-link fw-bold">Produk Kami</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#tentang" class="nav-link fw-bold">Tentang Kami</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#order" class="nav-link fw-bold">Cara Order</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Form pencarian, tersembunyi dulu -->
+                <form id="searchForm" class="d-flex align-items-center d-none">
+                  <input class="form-control me-2" type="search" placeholder="Cari produk..." aria-label="Search" id="searchInput">
+                </form>
+
+                <!-- Tombol ikon search -->
+                <button id="toggleSearch" class="btn btn-outline-light me-3 " type="button">
+                  <i class="bi bi-search"></i>
+                </button>
+
+                <!-- Tombol Keranjang (Tetap di Pojok Kanan Atas) -->
+                <button class="btn btn-outline-light position-relative me-auto btnCart" type="button"
+                data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+                  <i class="bi bi-cart4 text-light"></i>
+                  <span id="cart-count" class="badge bg-danger position-absolute top-0 start-100 translate-middle rounded-pill px-2 py-1">0</span>
+                </button>
+            </div>
+          </nav>
+      
+          <!-- konten -->
+          <div class="p-1 m-5 text-light px-4 mb-4 banner-wrapper">
+            <h1><strong>Tenun Insana</strong></h1>
+            <h3 class="info">Kain Tenun Asli dari Bumi Timor</h3>
+            <p class="info-tenun">
+              Temukan keindahan warisan budaya lewat kain tenun khas Insana – buatan tangan para pengrajin dari Kecamatan Insana, Kabupaten Timor Tengah Utara. Setiap helai benang menyimpan cerita dan tradisi.
+            </p>
+            <a href="#collection" class="btn btn-light text-dark fw-bold px-4 py-2 rounded-pill shadow-sm">
+              Jelajahi Koleksi
+            </a>
+          </div>
+          
+        </div>
+        
+      </div>
+
+    <!-- Catalogue -->
+    <h3 id="collection" class="mt-5 text-center fw-bold">Kain Tenun Insana</h3>
+    <div class="w-75 mx-auto text-center text-muted fs-5 lh-lg px-3">
+      Kain Tenun Insana merupakan hasil kerajinan tangan tradisional dari Timor Tengah Utara. Ditenun dengan teknik turun-temurun, setiap motif mengandung makna budaya dan filosofi khas masyarakat Insana. Kain ini cocok digunakan untuk berbagai keperluan—baik sebagai pakaian adat, cendera mata, maupun koleksi fashion etnik modern.
+    </div>
+
+
+    <div class="row row-cols-md-3 row-cols-2 rounded-3 p-5 " data-aos="fade-up" data-aos-delay="100" id="productContainer"></div>
+
+
+    <!-- Tentang Kami -->
+    <div id="tentang" class="aboutUs bg-secondary" data-aos="fade-up" data-aos-delay="100">
+      <div class="aboutUsContent">
+        <div class="container text-white py-4">
+          <div class="row align-items-start text-start">
+            
+            <!-- Gambar -->
+            <div class="col-md-2 mb-4 text-center text-md-start">
+              <img src="images/about-us.png" alt="Tentang Kami" style="width: 100%; max-width: 120px; height: auto;">
+            </div>
+    
+            <!-- Informasi Kontak -->
+            <div class="col-md-3 mb-4">
+              <h4 class="fw-bold mb-3">Informasi Kontak</h4>
+              <ul class="list-unstyled">
+                <li class="d-flex">
+                  <i class="bi bi-telephone fs-5 me-2"></i>
+                  <a href="tel:081234567890" class="text-white text-decoration-none">
+                    <div>
+                      <strong>Telephone</strong>
+                      <p class="mb-0">081234567890</p>
+                    </div>
+                  </a>
+                </li>
+                <li class="d-flex">
+                  <i class="bi bi-whatsapp fs-5 me-2"></i>
+                  <a href="https://wa.me/6281234567890" target="_blank" class="text-white text-decoration-none">
+                    <div>
+                      <strong>WhatsApp</strong>
+                      <p class="mb-0">081234567890</p>
+                    </div>
+                  </a>
+                </li>
+                <li class="d-flex">
+                  <i class="bi bi-envelope-at fs-5 me-2"></i>
+                  <a href="mailto:tenuninsana@gmail.com" class="text-white text-decoration-none">
+                    <div>
+                      <strong>Email</strong>
+                      <p class="mb-0">tenuninsana@gmail.com</p>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+    
+            <!-- Alamat -->
+            <div class="col-md-4 mb-4">
+              <h4 class="fw-bold mb-3">Alamat</h4>
+              <div class="d-flex align-items-start">
+                <i class="bi bi-geo-alt fs-5 me-2 mt-1"></i>
+                <address class="mb-0">
+                  Jl. El Tari Km 5, Jurusan Kupang<br>
+                  Kec. Kota Kefamenanu<br>
+                  Kab. Timor Tengah Utara<br>
+                  Prov. Nusa Tenggara Timur<br>
+                  Indonesia
+                </address>
+              </div>
+            </div>
+    
+            <!-- Sosial Media -->
+            <div class="col-md-3 mb-4">
+              <h4 class="fw-bold mb-3">Sosial Media</h4>
+              <ul class="list-unstyled">
+                <li class="d-flex">
+                  <i class="bi bi-facebook fs-5 me-2"></i>
+                  <a href="https://facebook.com/tenuninsana.co" target="_blank" class="text-white text-decoration-none">
+                    <div>
+                      <strong>Facebook</strong>
+                      <p class="mb-0">Tenun Insana</p>
+                    </div>
+                  </a>
+                </li>
+                <li class="d-flex">
+                  <i class="bi bi-instagram fs-5 me-2"></i>
+                  <a href="https://instagram.com/tenuninsana.co" target="_blank" class="text-white text-decoration-none">
+                    <div>
+                      <strong>Instagram</strong>
+                      <p class="mb-0">Tenun Insana</p>
+                    </div>
+                  </a>
+                </li>
+                <li class="d-flex">
+                  <i class="bi bi-linkedin fs-5 me-2"></i>
+                  <a href="https://linkedin.com/tenuninsana.co" target="_blank" class="text-white text-decoration-none">
+                    <div>
+                      <strong>LinkedIn</strong>
+                      <p class="mb-0">Tenun Insana</p>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+    
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+
+    <!-- Cara Order -->
+    <div id="order" class="px-4 py-4 bg-light text-center" data-aos="fade-up" data-aos-delay="100">
+        <div class="mx-auto w-75">
+            <h3>Cara Order</h3>
+            <p class="text-center">
+                <img src="images/order.png" align="right" style="width: 100px; height: auto;" class="ms-3 mb-3">
+                <div class="text-start">
+                    <p><strong>1. Pilih Produk </strong>tenun yang kamu suka dan masukan ke keranjang.</p>
+                    <p><strong>2. </strong>Buka Keranjang dan klit tombol <strong>Checkout</strong>.</p>
+                    <p><strong>3. </strong>Isi <Strong>Nama </Strong>dan <strong>Nomor WhatsApp </strong>kamu.</p>
+                    <p><strong>4. </strong>Tim kami akan menghubungi kamu lewat WhatsApp untuk Konfirmasi pesanan, ongkir dan pengiriman.</p>
+                </div>
+            </p>
+        </div>
+    </div>
+
+    <!-- Copyright -->
+    <footer class="text-center py-4 bg-dark text-white mt-4">
+        <p class="mb-0">&copy; 2025 <strong>Tenun Insana</strong> | <small>Kain Tenun Asli Timor</small></p>
+      </footer>
+
+    <!-- Modal -->
+    <button type="button" class="btn btn-primary d-none btnModal" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Data Product
+    </button>
+
+    <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 modalTitle" id="detailModalLabel"></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                </div>
+                <div class="modal-body row">
+                    <div class="modalImage col-md-6 col-12"></div>
+                    <div class="col-md-6 col-12">
+                        <div class="modalDeskripsi">
+                            <p class="deskripsiContent"></p>
+                            <div class="d-md-flex">
+                                <a class="btn btn-sm btn-success btn-add-to-cart d-block btnTambahKeranjang me-4" data-product-id="1">Masukkan Ke Keranjang</a>
+                                <span class="ms-auto text-danger fw-bold text-decoration-line-through me-2 text-center modalHargaAsli"></span>
+                                <span class="fw-bold text-success fw-bold text-center modal-harga-diskon"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Offcanvas untuk Keranjang -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart" aria-labelledby="offcanvasCartLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasCartLabel">Keranjang Belanja</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul id="cart-items" class="list-group"></ul>
+            <hr>
+            <div class="d-flex justify-content-between">
+                <strong>Total:</strong> <span id="cart-total">Rp 0</span>
+            </div>
+            <button class="btn btn-success w-100 mt-3" id="checkoutButton">Checkout</button>
+        </div>
+    </div>
+
+   <!-- Modal Checkout -->
+   <div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <form id="checkoutForm" class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="checkoutModalLabel">Checkout</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="nama" class="form-label">Nama</label>
+            <input type="text" class="form-control" id="nama" required>
+          </div>
+          <div class="mb-3 position-relative">
+            <label for="alamat" class="form-label">Alamat</label>
+            <textarea class="form-control pe-5" id="alamat" rows="2" required></textarea>
+            <!-- Spinner & Info -->
+            <div id="lokasi-spinner" class="position-absolute top-0 end-0 mt-2 me-2 d-none">
+              <div class="spinner-border text-primary spinner-border-sm" role="status"></div>
+            </div>
+            <small id="lokasi-info" class="text-muted d-block mt-1">Mengambil lokasi otomatis...</small>
+          </div>          
+          <div class="mb-3">
+            <label for="no_telp" class="form-label">Nomor Telepon (WA)</label>
+            <input type="tel" class="form-control" id="no_telp" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Kirim</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  
+  
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>AOS.init();</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    <script src="javascript/main.js"></script>
+  </body>
+</html>

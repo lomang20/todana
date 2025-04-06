@@ -1,0 +1,139 @@
+<!-- pesanan.html -->
+<h2>Data Pesanan</h2>
+<div class="card-tabel rounded-3 ms-4 mt-4">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+        <span class="ms-3">Data Pesanan</span>
+        <input type="text" id="searchPesanan" class="form-control w-25" placeholder="Cari pesanan...">
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-hover text-center" id="tabelPesanan">
+            <thead class="table-light">
+                <tr class="text-center align-middle ">
+                    <th>Nama</th>
+                    <th>Alamat</th>
+                    <th>No. Telp</th> 
+                    <th>Produk</th>
+                    <th>Harga Satuan</th>
+                    <th>Total Harga</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody id="isiTabelPesanan">
+                <!-- Data akan dimuat lewat JS -->
+            </tbody>
+        </table>
+        <div id="pagination" class="d-flex justify-content-center mt-3">
+            <!-- Pagination buttons will be dynamically added -->
+        </div>
+    </div>
+</div>
+
+<script>
+    let pesananData = [];
+    let currentPage = 1;
+    const itemsPerPage = 5;
+
+    async function ambilPesanan() {
+        try {
+            const response = await fetch('http://localhost:3000/checkout');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            pesananData = await response.json();
+            if (pesananData.length === 0) {
+                document.getElementById("isiTabelPesanan").innerHTML = '<tr><td colspan="7" class="text-center text-muted">No orders available.</td></tr>';
+                return;
+            }
+            renderTable();
+        } catch (error) {
+            console.error('Error fetching pesanan:', error);
+            document.getElementById("isiTabelPesanan").innerHTML = '<tr><td colspan="7" class="text-danger text-center">Failed to load orders. Please try again later.</td></tr>';
+        }
+    }
+
+    function renderTable() {
+        const tbody = document.getElementById("isiTabelPesanan");
+        tbody.innerHTML = "";
+
+        const start = (currentPage - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        const filteredData = pesananData.filter(pesanan => 
+            pesanan.nama.toLowerCase().includes(document.getElementById("searchPesanan").value.toLowerCase())
+        );
+        const paginatedData = filteredData.slice(start, end);
+
+        paginatedData.forEach(pesanan => {
+            const tr = document.createElement("tr");
+
+            let produkList = [];
+            let hargaList = [];
+            try {
+                const produkArray = JSON.parse(pesanan.produk);
+                produkList = produkArray.map(p => p.name).join("<br>");
+                hargaList = produkArray.map(p => `Rp ${p.price.toLocaleString()}`).join("<br>");
+            } catch (e) {
+                produkList = "(Produk tidak valid)";
+                hargaList = "-";
+            }
+
+            tr.innerHTML = `
+                <td>${pesanan.nama}</td>
+                <td>${pesanan.alamat}</td>
+                <td>${pesanan.no_telp}</td>
+                <td>${produkList}</td>
+                <td>${hargaList}</td>
+                <td>Rp ${pesanan.total.toLocaleString()}</td>
+                <td>
+                    <button class="btn btn-sm btn-warning me-2" onclick="editPesanan(${pesanan.id})">Edit</button>
+                    <button class="btn btn-sm btn-danger" onclick="hapusPesanan(${pesanan.id})">Hapus</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+
+        renderPagination(filteredData.length);
+    }
+
+    function renderPagination(totalItems) {
+        const pagination = document.getElementById("pagination");
+        pagination.innerHTML = "";
+
+        const totalPages = Math.ceil(totalItems / itemsPerPage);
+        for (let i = 1; i <= totalPages; i++) {
+            const button = document.createElement("button");
+            button.className = `btn btn-sm ${i === currentPage ? 'btn-primary' : 'btn-light'} mx-1`;
+            button.textContent = i;
+            button.onclick = () => {
+                currentPage = i;
+                renderTable();
+            };
+            pagination.appendChild(button);
+        }
+    }
+
+    document.getElementById("searchPesanan").addEventListener("input", () => {
+        currentPage = 1;
+        renderTable();
+    });
+
+    async function hapusPesanan(id) {
+        if (confirm("Yakin ingin menghapus pesanan ini?")) {
+            const response = await fetch(`http://localhost:3000/checkout/${id}`, {
+                method: 'DELETE'
+            });
+
+            if (response.ok) {
+                alert("Pesanan berhasil dihapus!");
+                ambilPesanan();
+            } else {
+                alert("Gagal menghapus pesanan.");
+            }
+        }
+    }
+
+    function editPesanan(id) {
+        alert("Fitur edit untuk ID: " + id);
+    }
+
+    ambilPesanan();
+</script>

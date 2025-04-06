@@ -1,0 +1,385 @@
+#wrapper {
+    display: flex;
+}
+#sidebar-wrapper {
+    min-width: 250px;
+    max-width: 250px;
+}
+#page-content-wrapper {
+    flex-grow: 1;
+    padding: 20px;
+}
+.navbar .dropdown-menu {
+    right: 0;
+    left: auto;
+}
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+#layoutSidenav {
+    display: flex;
+  }
+  #layoutSidenav #layoutSidenav_nav {
+    flex-basis: 225px;
+    flex-shrink: 0;
+    transition: transform 0.15s ease-in-out;
+    z-index: 1038;
+    transform: translateX(-225px);
+  }
+  #layoutSidenav #layoutSidenav_content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+    flex-grow: 1;
+    min-height: calc(100vh - 56px);
+    margin-left: -225px;
+  }
+  
+  .sb-sidenav-toggled #layoutSidenav #layoutSidenav_nav {
+    transform: translateX(0);
+  }
+  .sb-sidenav-toggled #layoutSidenav #layoutSidenav_content:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 1037;
+    opacity: 0.5;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  @media (min-width: 992px) {
+    #layoutSidenav #layoutSidenav_nav {
+      transform: translateX(0);
+    }
+    #layoutSidenav #layoutSidenav_content {
+      margin-left: 0;
+      transition: margin 0.15s ease-in-out;
+    }
+    .sb-sidenav-toggled #layoutSidenav #layoutSidenav_nav {
+      transform: translateX(-225px);
+    }
+    .sb-sidenav-toggled #layoutSidenav #layoutSidenav_content {
+      margin-left: -225px;
+    }
+    .sb-sidenav-toggled #layoutSidenav #layoutSidenav_content:before {
+      display: none;
+    }
+  }
+  .sb-nav-fixed .sb-topnav {
+    z-index: 1039;
+  }
+  .sb-nav-fixed #layoutSidenav #layoutSidenav_nav {
+    width: 225px;
+    height: 100vh;
+    z-index: 1038;
+  }
+  .sb-nav-fixed #layoutSidenav #layoutSidenav_nav .sb-sidenav {
+    padding-top: 56px;
+  }
+  .sb-nav-fixed #layoutSidenav #layoutSidenav_nav .sb-sidenav .sb-sidenav-menu {
+    overflow-y: auto;
+  }
+  .sb-nav-fixed #layoutSidenav #layoutSidenav_content {
+    padding-left: 225px;
+    top: 56px;
+  }
+  
+  #layoutError {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  #layoutError #layoutError_content {
+    min-width: 0;
+    flex-grow: 1;
+  }
+  #layoutError #layoutError_footer {
+    min-width: 0;
+  }
+  
+  .img-error {
+    max-width: 20rem;
+  }
+  
+  .nav .nav-link .sb-nav-link-icon,
+  .sb-sidenav-menu .nav-link .sb-nav-link-icon {
+    margin-right: 0.5rem;
+  }
+  
+  .sb-topnav {
+    padding-left: 0;
+    height: 56px;
+    z-index: 1039;
+  }
+  .sb-topnav .navbar-brand {
+    width: 225px;
+    margin: 0;
+  }
+  .sb-topnav.navbar-dark #sidebarToggle {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  .sb-topnav.navbar-light #sidebarToggle {
+    color: #212529;
+  }
+  
+  .sb-sidenav {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex-wrap: nowrap;
+  }
+  .sb-sidenav .sb-sidenav-menu {
+    flex-grow: 1;
+  }
+  .sb-sidenav .sb-sidenav-menu .nav {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+  .sb-sidenav .sb-sidenav-menu .nav .sb-sidenav-menu-heading {
+    padding: 1.75rem 1rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .sb-sidenav .sb-sidenav-menu .nav .nav-link {
+    display: flex;
+    align-items: center;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    position: relative;
+  }
+  .sb-sidenav .sb-sidenav-menu .nav .nav-link .sb-nav-link-icon {
+    font-size: 0.9rem;
+  }
+  .sb-sidenav .sb-sidenav-menu .nav .nav-link .sb-sidenav-collapse-arrow {
+    display: inline-block;
+    margin-left: auto;
+    transition: transform 0.15s ease;
+  }
+  .sb-sidenav .sb-sidenav-menu .nav .nav-link.collapsed .sb-sidenav-collapse-arrow {
+    transform: rotate(-90deg);
+  }
+  .sb-sidenav .sb-sidenav-menu .nav .sb-sidenav-menu-nested {
+    margin-left: 1.5rem;
+    flex-direction: column;
+  }
+  .sb-sidenav .sb-sidenav-footer {
+    padding: 0.75rem;
+    flex-shrink: 0;
+  }
+  
+  .sb-sidenav-dark {
+    background-color: #212529;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  .sb-sidenav-dark .sb-sidenav-menu .sb-sidenav-menu-heading {
+    color: rgba(255, 255, 255, 0.25);
+  }
+  .sb-sidenav-dark .sb-sidenav-menu .nav-link {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  .sb-sidenav-dark .sb-sidenav-menu .nav-link .sb-nav-link-icon {
+    color: rgba(255, 255, 255, 0.25);
+  }
+  .sb-sidenav-dark .sb-sidenav-menu .nav-link .sb-sidenav-collapse-arrow {
+    color: rgba(255, 255, 255, 0.25);
+  }
+  .sb-sidenav-dark .sb-sidenav-menu .nav-link:hover {
+    color: #fff;
+  }
+  .sb-sidenav-dark .sb-sidenav-menu .nav-link.active {
+    color: #fff;
+  }
+  .sb-sidenav-dark .sb-sidenav-menu .nav-link.active .sb-nav-link-icon {
+    color: #fff;
+  }
+  .sb-sidenav-dark .sb-sidenav-footer {
+    background-color: #343a40;
+  }
+  
+  .sb-sidenav-light {
+    background-color: #f8f9fa;
+    color: #212529;
+  }
+  .sb-sidenav-light .sb-sidenav-menu .sb-sidenav-menu-heading {
+    color: #adb5bd;
+  }
+  .sb-sidenav-light .sb-sidenav-menu .nav-link {
+    color: #212529;
+  }
+  .sb-sidenav-light .sb-sidenav-menu .nav-link .sb-nav-link-icon {
+    color: #adb5bd;
+  }
+  .sb-sidenav-light .sb-sidenav-menu .nav-link .sb-sidenav-collapse-arrow {
+    color: #adb5bd;
+  }
+  .sb-sidenav-light .sb-sidenav-menu .nav-link:hover {
+    color: #0d6efd;
+  }
+  .sb-sidenav-light .sb-sidenav-menu .nav-link.active {
+    color: #0d6efd;
+  }
+  .sb-sidenav-light .sb-sidenav-menu .nav-link.active .sb-nav-link-icon {
+    color: #0d6efd;
+  }
+  .sb-sidenav-light .sb-sidenav-footer {
+    background-color: #e9ecef;
+  }
+  .fixed-top, .sb-nav-fixed #layoutSidenav #layoutSidenav_nav, .sb-nav-fixed  {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+}
+
+body.sb-sidenav-toggled #layoutSidenav_content {
+    margin-left: 0;
+    width: 100%;
+    transition: margin-left 0.3s ease;
+    overflow-y: auto; /* Ensure scrolling works when sidebar is toggled */
+}
+
+#layoutSidenav_content {
+    margin-left: 225px;
+    width: calc(100% - 225px);
+    transition: margin-left 0.3s ease;
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+@media (max-width: 991.98px) {
+    #layoutSidenav #layoutSidenav_nav {
+        transform: translateX(-225px);
+        transition: transform 0.3s ease;
+        z-index: 1040; /* Ensure sidebar is above main content */
+    }
+    body.sb-sidenav-toggled #layoutSidenav #layoutSidenav_nav {
+        transform: translateX(0);
+    }
+    #layoutSidenav_content {
+        margin-left: 0;
+        width: calc(100% - 225px);
+    }
+    body.sb-sidenav-toggled #layoutSidenav_content {
+        margin-left: 250px;
+        width: calc(100% + 450px);
+    }
+}
+
+@media (min-width: 992px) {
+    #layoutSidenav_content {
+        margin-left: 225px;
+        width: calc(100% - 225px);
+    }
+    body.sb-sidenav-toggled #layoutSidenav_content {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    #layoutSidenav #layoutSidenav_nav {
+        transform: translateX(-225px);
+        transition: transform 0.3s ease;
+    }
+    body.sb-sidenav-toggled #layoutSidenav #layoutSidenav_nav {
+        transform: translateX(0);
+    }
+    #layoutSidenav_content {
+        margin-left: 0;
+        width: 100%;
+        transition: margin-left 0.3s ease;
+    }
+    body.sb-sidenav-toggled #layoutSidenav_content {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    #layoutSidenav #layoutSidenav_nav {
+        transform: translateX(-225px);
+        transition: transform 0.3s ease;
+    }
+    body.sb-sidenav-toggled #layoutSidenav #layoutSidenav_nav {
+        transform: translateX(0);
+    }
+    #layoutSidenav_content {
+        margin-left: 0;
+        width: 100%;
+        transition: margin-left 0.3s ease;
+    }
+    body.sb-sidenav-toggled #layoutSidenav_content {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+.container {
+    overflow-y: auto; /* Ensure scrolling works inside the container */
+    max-height: calc(100vh - 56px); /* Adjust height to fit within the viewport */
+}
+
+.card {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column; /* Membuat card menjadi kolom */
+    justify-content: space-between;
+    overflow: hidden; /* Agar konten tidak keluar dari card */
+    height: 100%; /* Mengatur tinggi card */
+}
+
+.card-tabel {
+  display: flex;
+  flex-direction: column; /* Membuat card menjadi kolom */
+  justify-content: space-between;
+  overflow: hidden; /* Agar konten tidak keluar dari card */
+  height: 100%; /* Mengatur tinggi card */
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+    transition: transform 0.3s ease-in-out;
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    background-color: #f1f1f1; 
+    object-position: center;
+}
+
+.btnDelete {
+    padding: auto; /* Menambahkan padding untuk ukuran tombol */
+    width: 100%; /* Mengatur lebar tombol agar memenuhi lebar card */
+    font-size: 16px;    /* Ukuran font yang lebih jelas */
+    background-color: #dc3545; /* Warna latar belakang tombol */ 
+    color: white;       /* Warna teks putih */ 
+    border: none;       /* Menghilangkan border default */ 
+    border-radius: 5px; /* Memberikan sudut yang lebih lembut pada tombol */ 
+    transition: all 0.3s ease; /* Memberikan efek transisi saat hover */ 
+    margin-right: 10px; 
+    margin-top: 10px; 
+}
+.btnEdit {
+    padding: auto; /* Menambahkan padding untuk ukuran tombol */
+    width: 100%; /* Mengatur lebar tombol agar memenuhi lebar card */
+    font-size: 16px;    /* Ukuran font yang lebih jelas */
+    background-color: #ffc107; /* Warna latar belakang tombol */ 
+    color: white;       /* Warna teks putih */ 
+    border: none;       /* Menghilangkan border default */ 
+    border-radius: 5px; /* Memberikan sudut yang lebih lembut pada tombol */ 
+    transition: all 0.3s ease; /* Memberikan efek transisi saat hover */ 
+    margin-right: 10px; 
+    margin-top: 10px; 
+}

@@ -1,0 +1,205 @@
+<div class="container mt-4">
+    <h2>Kelola Produk</h2>
+
+     <!-- Tombol untuk menampilkan form -->
+     <button class="btn btn-success mb-3" id="showFormBtn">Tambah Produk</button>
+
+    <!-- Form tambah produk (disembunyikan dulu) -->
+    <div id="formContainer" style="display: none;">
+        <form id="productForm">
+            <input type="text" id="nama" class="form-control" placeholder="Nama Produk" required><br>
+            <textarea id="deskripsi" class="form-control" placeholder="Deskripsi" required></textarea><br>
+            <input type="number" id="harga_asli" class="form-control" placeholder="Harga Asli" required><br>
+            <input type="number" id="harga_diskon" class="form-control" placeholder="Harga Diskon" required><br>
+            <input type="file" id="gambar" class="form-control" accept="image/*" required><br>
+            <button type="submit" id="submit" class="btn btn-primary">Tambah Produk</button>
+        </form>
+    </div>
+    <hr>
+    <h3>Daftar Produk</h3>
+    <div id="produkList" class="row"></div>
+</div>
+
+<!-- Offcanvas Edit Produk -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEdit" aria-labelledby="offcanvasEditLabel">
+    <div class="offcanvas-header">
+      <h5 id="offcanvasEditLabel">Edit Produk</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+      <form id="editProductForm">
+        <input type="hidden" id="edit_id">
+        <input type="text" id="edit_nama" class="form-control mb-2" placeholder="Nama Produk" required>
+        <textarea id="edit_deskripsi" class="form-control mb-2" placeholder="Deskripsi" required></textarea>
+        <input type="number" id="edit_harga_asli" class="form-control mb-2" placeholder="Harga Asli" required>
+        <input type="number" id="edit_harga_diskon" class="form-control mb-2" placeholder="Harga Diskon" required>
+        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+      </form>
+    </div>
+  </div>
+  
+
+<script>
+    document.getElementById('productForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const formData = new FormData();
+        formData.append('nama', document.getElementById('nama').value);
+        formData.append('deskripsi', document.getElementById('deskripsi').value);
+        formData.append('harga_asli', document.getElementById('harga_asli').value);
+        formData.append('harga_diskon', document.getElementById('harga_diskon').value);
+        formData.append('gambar', document.getElementById('gambar').files[0]);
+
+        fetch('http://localhost:3000/produk', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            alert(data.message || 'Produk berhasil ditambahkan!');
+            document.getElementById('productForm').reset(); // Reset the form
+            fetchProduk(); // Refresh the product list
+        })
+        .catch(error => {
+            console.error('Error adding produk:', error);
+            alert('Gagal menambahkan produk. Silakan coba lagi.');
+        });
+    });
+
+    function fetchProduk() {
+        fetch('http://localhost:3000/produk')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                const produkContainer = document.getElementById('produkList');
+                produkContainer.innerHTML = '';
+                if (data.length === 0) {
+                    produkContainer.innerHTML = '<p class="text-center text-muted">No products available.</p>';
+                    return;
+                }
+                data.forEach(produk => {
+                    const hargaAsli = produk.harga_asli && produk.harga_asli > 0
+                        ? `<span class="text-danger fw-bold text-decoration-line-through text-center harga-asli">
+                            Rp. ${Number(produk.harga_asli).toLocaleString()}
+                        </span>`
+                        : '';
+    
+                    const hargaDiskon = produk.harga_diskon
+                        ? `Rp. ${Number(produk.harga_diskon).toLocaleString()}`
+                        : 'Rp. 0';
+                    const produkHTML = `
+                        <div class="col-12 col-sm-12 col-md-5 col-lg-4 mb-5">
+                            <div class="card shadow-sm mb-4" style="width: 100%;">
+                                <img src="../${produk.gambar}" class="card-img-top w-100" alt="Gambar Produk">
+                                <div class="card-body">
+                                    <p class="card-text">${produk.nama}</p>
+                                </div>
+                                <div class="d-none deskripsi"><p>${produk.deskripsi}</p></div>
+                                <div class="card-footer">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        ${hargaAsli}
+                                        <span class="fw-bold text-success fw-bold text-center ms-auto harga-diskon">
+                                            ${hargaDiskon}
+                                        </span>
+                                    </div>
+                                    <button class="btn btn-warning btn-sm btnEdit mt-2" onclick="editProduk(${produk.id})">Edit</button>
+                                    <button class="btn btn-danger btn-sm btnDelete mt-2" onclick="deleteProduk(${produk.id})">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    produkContainer.innerHTML += produkHTML;
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching produk:', error);
+                document.getElementById('produkList').innerHTML = '<p class="text-danger">Failed to load products. Please try again later.</p>';
+            });
+    }
+
+    function editProduk(id) {
+    fetch(`http://localhost:3000/produk/${id}`)
+        .then(response => response.json())
+        .then(produk => {
+            // Isi form edit dengan data produk
+            document.getElementById('edit_id').value = produk.id;
+            document.getElementById('edit_nama').value = produk.nama;
+            document.getElementById('edit_deskripsi').value = produk.deskripsi;
+            document.getElementById('edit_harga_asli').value = produk.harga_asli;
+            document.getElementById('edit_harga_diskon').value = produk.harga_diskon;
+
+            // Tampilkan offcanvas
+            const offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasEdit'));
+            offcanvas.show();
+        })
+        .catch(error => console.error('Gagal mengambil data produk:', error));
+}
+
+    // Ensure deleteProduk is globally accessible
+    window.deleteProduk = function (id) {
+        if (confirm('Apakah Anda yakin ingin menghapus produk ini?')) {
+            fetch(`http://localhost:3000/produk/${id}`, {
+                method: 'DELETE'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert(data.message || 'Produk berhasil dihapus!');
+                fetchProduk(); // Refresh the product list
+            })
+            .catch(error => console.error('Error deleting produk:', error));
+        }
+    };
+
+    // Call fetchProduk on page load
+    fetchProduk();
+
+    // Tampilkan atau sembunyikan form saat tombol diklik
+document.getElementById('showFormBtn').addEventListener('click', function() {
+    const formContainer = document.getElementById('formContainer');
+    if (formContainer.style.display === 'none') {
+        formContainer.style.display = 'block';
+        this.textContent = 'Tutup Form';
+    } else {
+        formContainer.style.display = 'none';
+        this.textContent = 'Tambah Produk';
+    }
+});
+
+document.getElementById('editProductForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const id = document.getElementById('edit_id').value;
+    const nama = document.getElementById('edit_nama').value;
+    const deskripsi = document.getElementById('edit_deskripsi').value;
+    const harga_asli = document.getElementById('edit_harga_asli').value;
+    const harga_diskon = document.getElementById('edit_harga_diskon').value;
+
+    fetch(`http://localhost:3000/produk/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nama, deskripsi, harga_asli, harga_diskon })
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message || 'Produk berhasil diperbarui!');
+        fetchProduk(); // Refresh daftar produk
+        bootstrap.Offcanvas.getInstance(document.getElementById('offcanvasEdit')).hide();
+    })
+    .catch(error => console.error('Error updating produk:', error));
+});
+
+</script>

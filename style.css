@@ -1,0 +1,376 @@
+.card-product {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    min-height: 350px; /* Atur tinggi minimum */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+  
+  .card-product:hover {
+    transform: translateY(-10px) !important; /* Ensure hover lift is applied */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2) !important; /* Ensure shadow is applied */
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important; /* Ensure smooth transition */
+  }
+  
+  /* Bungkus gambar agar bisa diatur posisi tengah */
+  
+  .card-img-top {
+    height: 220px; /* Atur tinggi tetap sesuai desain kamu */
+    display: flex;
+    align-items: center; /* Rata tengah vertikal */
+    justify-content: center; /* Rata tengah horisontal */
+    background-color: #f8f9fa; /* opsional, kasih warna latar */
+    overflow: hidden;
+  }
+  .card-product .card-img-top img {
+    max-height: 100%;
+    max-width: 100%;
+    height: auto; /* Biar gambar memenuhi container */
+    width: auto;
+    object-fit: contain;
+    object-position: center; /* Pusatkan gambar jika ada area kosong */
+    display: block;;
+    box-shadow: 0 0 0 transparent;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .card-product:hover .card-img-top img {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  }
+  
+  /* Nama produk */
+  .card-product .product-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #2c3e50;
+    text-align: center;
+  }
+  
+  /* Footer harga dan tombol */
+  .card-footer {
+    background-color: #fafafa;
+    padding: 15px;
+    border-top: 1px solid #eee;
+    margin-top: auto;
+  }
+  
+  
+  .product-name {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #333;
+  }
+  
+  .btn-cart {
+    background-color: #d1efe9; /* hijau muda yang lembut */
+    color: #029139;
+    font-weight: 600;
+    padding: 6px 10px;
+    border: 1px solid #037d62;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    width: 100%;
+    font-size: 0.9rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    height: 36px;
+  }
+  
+  .btn-cart .icon-text {
+    display: none;
+  }
+  
+  .btn-cart .icon-only {
+    display: inline-block;
+  }
+  
+  .btn-cart:hover {
+    background-color: #d1f2eb;
+    transform: scale(1.02);
+  }
+  
+  .btn-cart:hover .icon-text {
+    display: inline;
+  }
+  
+  .btn-cart:hover .icon-only {
+    display: none;
+  }
+  
+  
+  .btnDetail {
+    background-color: #e6f0ff; /* biru muda lembut */
+    color: #333;
+    font-weight: 600;
+    padding: 6px 12px;
+    border: 1px solid #aac4e6;
+    border-radius: 8px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+  }
+  
+  .btnDetail .text-detail {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    position: absolute;
+  }
+  
+  .btnDetail .icon-detail {
+    font-size: 1rem;
+    transition: opacity 0.3s ease;
+  }
+  
+  /* Saat hover, logo hilang, tulisan muncul */
+  .btnDetail:hover .icon-detail {
+    opacity: 0;
+  }
+  
+  .btnDetail:hover .text-detail {
+    opacity: 1;
+  }
+  
+
+nav ul {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Atur jarak antar item */
+}
+
+.navbar-nav .nav-link {
+    position: relative;
+    font-weight: 600;
+    color: #ffffff;
+    transition: color 0.3s ease;
+  }
+  
+  .navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #f1c40f; /* warna ungu tenun */
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+  
+  .navbar-nav .nav-link:hover {
+    color: #f1c40f;
+  }
+  
+  .navbar-nav .nav-link:hover::after {
+    width: 100%;
+  }
+  
+
+.logo {
+    font-size: 2rem;
+    font-family: 'Cinzel', serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+    background: linear-gradient(to right, #f1f1ef, #f1f1ef );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientMove 6s ease infinite;
+    text-transform: uppercase;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+  
+  .logo span {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 600;
+    color: #f1f1ef ;
+    -webkit-text-fill-color: #f1c40f  ;
+  }
+  
+  @keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+
+  #checkoutButton {
+    background: linear-gradient(to right, #1abc9c, #16a085);
+    font-weight: bold;
+    color: white;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+  }
+  
+  #checkoutButton:hover {
+    background: linear-gradient(to right, #16a085, #1abc9c);
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  .banner-wrapper {
+    width: 40%;
+  }
+
+  .section-ethnic {
+    border-left: 8px solid #8e44ad;
+    border-radius: 12px;
+    padding: 1.5rem;
+    background: linear-gradient(to right, #fdfbfb, #ebedee);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  
+  @keyframes cartBounce {
+    0%   { transform: scale(1); }
+    30%  { transform: scale(1.1); }
+    50%  { transform: scale(0.95); }
+    70%  { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  
+  .btn-cart.clicked {
+    animation: cartBounce 0.4s ease;
+  }
+
+  .banner-section {
+    background-image: url('images/bg1.jpg'); /* Ganti dengan gambar kamu */
+    background-size: cover;
+    background-position: center;
+    height: 620px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    overflow: hidden; /* Supaya blur nggak keluar batas */
+  }
+
+  .banner-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+  }
+  
+  .banner-section > * {
+    position: relative;
+    z-index: 1; /* Biar konten di atas blur-nya */
+  }
+  
+  .banner-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  .info {
+    font-size: 1.4rem;
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
+    margin-top: 5px;
+  }
+  .info-tenun {
+    font-size: 0.8rem;
+    color: #dadada;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+  }
+
+  .aboutUs {
+    background-image: url('images/about-us.jpg');
+    background-size: cover;
+    background-position: center;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .aboutUs::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+  }
+
+  .aboutUsContent {
+    position: relative;
+    z-index: 1;
+    color: #ffffff;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .aboutUsContent .container {
+    max-width: 100%;
+  }
+  
+  .aboutUsContent h4 {
+    font-size: 1.25rem;
+  }
+  
+  .aboutUsContent p {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+  
+
+  .banner-wrapper h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+  
+  .banner-wrapper h3.info {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+    color: #f1c40f;
+  }
+  
+  .banner-wrapper p.info-tenun {
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 600px;
+    color: #f8f8f8;
+  }
+  
+  .banner-wrapper a.btn {
+    margin-top: 1rem;
+    background-color: #ffffff;
+    color: #2c3e50;
+    border: none;
+    transition: all 0.3s ease;
+  }
+  
+  .banner-wrapper a.btn:hover {
+    background-color: #f1c40f;
+    color: #2c3e50;
+    transform: scale(1.05);
+  }
+  
+  #searchForm {
+    transition: all 0.3s ease;
+  }
